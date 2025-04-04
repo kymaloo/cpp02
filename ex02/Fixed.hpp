@@ -39,7 +39,11 @@ class Fixed
 		float operator-(const Fixed &op);
 		float operator*(const Fixed &op);
 		float operator/(const Fixed &op);
-		//void Fixed::operator++(const Fixed &op);
+		// Surcharge operator incrementation et decrementation
+		Fixed &operator++(void);
+		Fixed operator++(int);
+		Fixed &operator--(void);
+		Fixed operator--(int);
         // Surcharge operator <<
 		friend std::ostream &operator<<(std::ostream& os, const Fixed& fd);
     	// Getter/Setter
@@ -48,4 +52,9 @@ class Fixed
         // Convertion
 		float toFloat(void) const;
 		int toInt(void) const;
+        // Min/Max
+		static const Fixed &min(const Fixed &op1, const Fixed &op2);
+		static Fixed &min(Fixed &op1, Fixed &op2);
+		static const Fixed &max(const Fixed &op1, const Fixed &op2);
+		static Fixed &max(Fixed &op1, Fixed &op2);
 };

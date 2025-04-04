@@ -106,10 +106,31 @@ float Fixed::operator/(const Fixed &op)
 	return ((float)_value / (float)(1 << _fractionalBits) / (float)op._value / (float)(1 << _fractionalBits));
 }
 // Surcharge operator incrementation et decrementation
-//void Fixed::operator++(const Fixed &op)
-//{
-//	_value =
-//}
+Fixed &Fixed::operator++(void)
+{
+ 	_value++;
+	return (*this);
+}
+
+Fixed Fixed::operator++(int)
+{
+  	Fixed tmp = *this;
+	_value++;
+	return (tmp);
+}
+
+Fixed &Fixed::operator--(void)
+{
+	_value++;
+	return (*this);
+}
+
+Fixed Fixed::operator--(int)
+{
+	Fixed tmp = *this;
+	_value++;
+	return (tmp);
+}
 
 // Surcharge operator <<
 std::ostream &operator<<(std::ostream &os, const Fixed &fd)
@@ -140,3 +161,30 @@ float Fixed::toFloat(void) const
 	return ((float)_value / (float)(1 << _fractionalBits));
 }
 
+const Fixed &Fixed::min(const Fixed &op1, const Fixed &op2)
+{
+	if (op1._value < op2._value)
+    	return (op1);
+    return (op2);
+}
+
+Fixed &Fixed::min(Fixed &op1, Fixed &op2)
+{
+	if (op1._value < op2._value)
+		return (op1);
+	return (op2);
+}
+
+const Fixed &Fixed::max(const Fixed &op1, const Fixed &op2)
+{
+	if (op1._value > op2._value)
+		return (op1);
+	return (op2);
+}
+
+Fixed &Fixed::max(Fixed &op1, Fixed &op2)
+{
+	if (op1._value > op2._value)
+		return (op1);
+	return (op2);
+}
